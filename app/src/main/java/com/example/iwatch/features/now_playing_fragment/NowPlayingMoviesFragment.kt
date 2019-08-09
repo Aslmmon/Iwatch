@@ -20,5 +20,8 @@ class NowPlayingMoviesFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_now_playing_movies, container, false)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
+    }
 }
