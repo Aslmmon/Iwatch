@@ -1,6 +1,6 @@
 package com.example.iwatch.common.Model.top_rated_movies_model
 
-data class TopRatedMovies(
+data class MoviesResponse(
     val page: Int,
     val results: List<Result>,
     val total_pages: Int,

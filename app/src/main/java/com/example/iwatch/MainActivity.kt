@@ -15,21 +15,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        setupViewPager()
-
     }
 
-    private fun setupViewPager() {
-        tabs.addTab(tabs.newTab().setText(getString(R.string.top_rated)))
-        tabs.addTab(tabs.newTab().setText(getString(R.string.upcoming)))
-        tabs.addTab(tabs.newTab().setText(getString(R.string.now_playing)))
-        tabs.addTab(tabs.newTab().setText(getString(R.string.popular_movies)))
-        val myAdapter = ViewPagerAdapter(supportFragmentManager, tabs.tabCount)
-        viewPager.adapter = myAdapter
-        viewPager.addOnPageChangeListener(
-            TabLayout.TabLayoutOnPageChangeListener(tabs)
-        )
-
-
-    }
 }

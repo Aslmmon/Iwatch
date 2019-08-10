@@ -1,11 +1,11 @@
-package com.example.iwatch.features.top_rated_fragment
+package com.example.iwatch.features.upcoming_fragment
 
 import com.example.iwatch.common.Model.top_rated_movies_model.MoviesResponse
 
-interface TopRatedMoviesContract {
+interface UpcomingMoviesContract {
 
     interface presenter {
-        fun getTopRatedMovies()
+        fun getUpcomingMovies()
         fun getDetailsMovie(id: Int)
     }
 
