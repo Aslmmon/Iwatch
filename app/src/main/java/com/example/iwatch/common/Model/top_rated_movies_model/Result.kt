@@ -1,6 +1,9 @@
 package com.example.iwatch.common.Model.top_rated_movies_model
 
 import android.os.Parcelable
+import com.example.iwatch.common.Model.details_response.DetailsResponse
+import com.example.iwatch.common.Model.details_response.Genre
+import com.example.iwatch.common.Model.reviews_response_movies.ResultReviews
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
@@ -18,5 +21,7 @@ data class Result(
     val title: String,
     val video: Boolean,
     val vote_average: Double,
-    val vote_count: Int
+    val vote_count: Int,
+    var genre: List<Genre>?,
+    var reviews:List<ResultReviews>?
 ) : Parcelable

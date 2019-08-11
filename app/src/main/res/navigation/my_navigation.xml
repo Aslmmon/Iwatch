@@ -6,18 +6,10 @@
 
     <fragment android:id="@+id/mainFragment" android:name="com.example.iwatch.MainFragment"
               android:label="fragment_main" tools:layout="@layout/fragment_main"/>
-    <fragment android:id="@+id/detailsFragment"
-              android:name="com.example.iwatch.features.details_movies_fragment.DetailsFragment"
-              android:label="fragment_details" tools:layout="@layout/fragment_details">
-        <argument android:name="ResultMovies" app:argType="com.example.iwatch.common.Model.top_rated_movies_model.Result"/>
-    </fragment>
     <fragment android:id="@+id/topRatedMoviesFragment"
               android:name="com.example.iwatch.features.top_rated_fragment.TopRatedMoviesFragment"
               android:label="fragment_top_rated" tools:layout="@layout/fragment_top_rated"/>
     <fragment android:id="@+id/upcomingMoviesFragment"
               android:name="com.example.iwatch.features.upcoming_fragment.UpcomingMoviesFragment"
-              android:label="fragment_upcoming_movies" tools:layout="@layout/fragment_upcoming_movies">
-        <action android:id="@+id/action_details"
-                app:destination="@id/detailsFragment"/>
-    </fragment>
+              android:label="fragment_upcoming_movies" tools:layout="@layout/fragment_upcoming_movies"/>
 </navigation>

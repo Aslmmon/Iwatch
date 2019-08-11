@@ -2,6 +2,7 @@ package com.example.iwatch.common.ApiService
 
 
 import com.example.iwatch.common.Model.details_response.DetailsResponse
+import com.example.iwatch.common.Model.reviews_response_movies.ReviewsResponse
 import com.example.iwatch.common.Model.top_rated_movies_model.MoviesResponse
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -63,6 +64,10 @@ interface ApiService {
 
     @GET("/3/movie/{movie_id}?api_key=658680e409a5e9e11988f3e49361edae")
     fun getDetailsofMovie(@Path("movie_id") movieId:String) : Observable<DetailsResponse>
+
+
+    @GET("/3/movie/{movie_id}/reviews?api_key=658680e409a5e9e11988f3e49361edae&language")
+    fun getReviewsOfMovie(@Path("movie_id") movieId:String) : Observable<ReviewsResponse>
 
 }
 
