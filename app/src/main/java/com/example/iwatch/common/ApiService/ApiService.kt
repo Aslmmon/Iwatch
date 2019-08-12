@@ -2,6 +2,7 @@ package com.example.iwatch.common.ApiService
 
 
 import com.example.iwatch.common.Model.details_response.DetailsResponse
+import com.example.iwatch.common.Model.movie_vedio_response.MovieVediosResponse
 import com.example.iwatch.common.Model.reviews_response_movies.ReviewsResponse
 import com.example.iwatch.common.Model.top_rated_movies_model.MoviesResponse
 import com.squareup.moshi.Moshi
@@ -62,12 +63,27 @@ interface ApiService {
 
 
 
+    /**
+     * Here Getting Details of Movie
+     * */
     @GET("/3/movie/{movie_id}?api_key=658680e409a5e9e11988f3e49361edae")
     fun getDetailsofMovie(@Path("movie_id") movieId:String) : Observable<DetailsResponse>
 
 
+    /**
+     * Here Getting Reviews of Movies
+     * */
+
     @GET("/3/movie/{movie_id}/reviews?api_key=658680e409a5e9e11988f3e49361edae&language")
     fun getReviewsOfMovie(@Path("movie_id") movieId:String) : Observable<ReviewsResponse>
+
+
+
+    /**
+     * Here Getting Trailers and Vedios of Movies
+     * */
+    @GET("/3/movie/{movie_id}/videos?api_key=658680e409a5e9e11988f3e49361edae")
+    fun getTrailersOfMovie(@Path("movie_id") movieId:String) : Observable<MovieVediosResponse>
 
 }
 

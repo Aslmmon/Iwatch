@@ -24,9 +24,10 @@ class TopRatedMoviesPresenter : TopRatedMoviesContract.presenter, BasePresenter<
 
     override fun getTopRatedMovies() {
         compositeDisposable = CompositeDisposable()
-        MovieObservable.subscribeOn(Schedulers.io()).flatMap { result ->
-            getDetails(result)
-        }.flatMap { reviewsResult -> getMovieReviews(reviewsResult) }.observeOn(AndroidSchedulers.mainThread())
+        MovieObservable.subscribeOn(Schedulers.io()).concatMap { trailers -> getMovieTrailers(trailers) }
+            .concatMap { result ->
+                getDetails(result)
+            }.concatMap{ reviewsResult -> getMovieReviews(reviewsResult) }.observeOn(AndroidSchedulers.mainThread())
             .subscribe(object : Observer<Result> {
                 override fun onSubscribe(d: Disposable) {
                     compositeDisposable.add(d)
@@ -38,6 +39,7 @@ class TopRatedMoviesPresenter : TopRatedMoviesContract.presenter, BasePresenter<
                 }
 
                 override fun onError(e: Throwable) {
+                    Log.i("TopRated", "data is  $e.message")
 
                 }
 
@@ -58,6 +60,13 @@ class TopRatedMoviesPresenter : TopRatedMoviesContract.presenter, BasePresenter<
     private fun getMovieReviews(result: Result): Observable<Result> {
         return service.retrofitService.getReviewsOfMovie(result.id.toString()).map { details ->
             result.reviews = details.results
+            result
+        }.subscribeOn(Schedulers.io())
+    }
+
+    private fun getMovieTrailers(result: Result): Observable<Result> {
+        return service.retrofitService.getTrailersOfMovie(result.id.toString()).map { trailers ->
+            result.MovieVedios = trailers.results
             result
         }.subscribeOn(Schedulers.io())
     }
