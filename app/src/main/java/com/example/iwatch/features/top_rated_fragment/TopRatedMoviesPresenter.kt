@@ -2,6 +2,7 @@ package com.example.iwatch.features.top_rated_fragment
 
 import android.util.Log
 import com.example.iwatch.common.ApiService.service
+import com.example.iwatch.common.Constants
 import com.example.iwatch.common.Model.top_rated_movies_model.Result
 import com.robusta.tripsappteam1.common.base.presenter.BasePresenter
 import io.reactivex.Observable
@@ -11,6 +12,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import java.util.*
+import java.util.concurrent.TimeUnit
 
 class TopRatedMoviesPresenter : TopRatedMoviesContract.presenter, BasePresenter<TopRatedMoviesContract.view>() {
     private lateinit var compositeDisposable: CompositeDisposable
@@ -24,10 +26,10 @@ class TopRatedMoviesPresenter : TopRatedMoviesContract.presenter, BasePresenter<
 
     override fun getTopRatedMovies() {
         compositeDisposable = CompositeDisposable()
-        MovieObservable.subscribeOn(Schedulers.io()).concatMap { trailers -> getMovieTrailers(trailers) }
+        MovieObservable.subscribeOn(Schedulers.io()).concatMap { trailers -> Constants.getMovieTrailers(trailers)}
             .concatMap { result ->
-                getDetails(result)
-            }.concatMap{ reviewsResult -> getMovieReviews(reviewsResult) }.observeOn(AndroidSchedulers.mainThread())
+                Constants.getDetails(result)
+            }.concatMap{ reviewsResult -> Constants.getMovieReviews(reviewsResult) }.observeOn(AndroidSchedulers.mainThread())
             .subscribe(object : Observer<Result> {
                 override fun onSubscribe(d: Disposable) {
                     compositeDisposable.add(d)
@@ -50,38 +52,7 @@ class TopRatedMoviesPresenter : TopRatedMoviesContract.presenter, BasePresenter<
     }
 
 
-    private fun getDetails(result: Result): Observable<Result> {
-        return service.retrofitService.getDetailsofMovie(result.id.toString()).map { details ->
-            result.genre = details.genres
-            result
-        }.subscribeOn(Schedulers.io())
-    }
 
-    private fun getMovieReviews(result: Result): Observable<Result> {
-        return service.retrofitService.getReviewsOfMovie(result.id.toString()).map { details ->
-            result.reviews = details.results
-            result
-        }.subscribeOn(Schedulers.io())
-    }
-
-    private fun getMovieTrailers(result: Result): Observable<Result> {
-        return service.retrofitService.getTrailersOfMovie(result.id.toString()).map { trailers ->
-            result.MovieVedios = trailers.results
-            result
-        }.subscribeOn(Schedulers.io())
-    }
-
-
-    override fun getDetailsMovie(id: Int) {
-//        compositeDisposable.add(
-//            service.retrofitService.getDetailsofMovie(id.toString())
-//                .subscribeOn(Schedulers.newThread())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe { it ->
-//                    Log.i("details", it.genres.toString())
-//
-//                })
-    }
 
 
 }

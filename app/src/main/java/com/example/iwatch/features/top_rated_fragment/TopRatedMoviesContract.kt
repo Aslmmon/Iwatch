@@ -6,7 +6,6 @@ interface TopRatedMoviesContract {
 
     interface presenter {
         fun getTopRatedMovies()
-        fun getDetailsMovie(id: Int)
     }
 
     interface view {

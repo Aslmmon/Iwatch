@@ -34,6 +34,7 @@ class UpcomingMoviesFragment : Fragment(), UpcomingMoviesContract.view {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        adapter.clear()
         upcomingPresenter = UpcomingMoviesPresenter()
         upcomingPresenter.setView(this@UpcomingMoviesFragment)
         return inflater.inflate(R.layout.fragment_upcoming_movies, container, false)
@@ -62,13 +63,10 @@ class UpcomingMoviesFragment : Fragment(), UpcomingMoviesContract.view {
         context?.startActivity(intent)
     }
 
-    override fun showDataInRecyclerView(it: MoviesResponse) {
 
-        var myList: List<Result> = it.results
-
-        myList.forEach {
-            adapter.add(Movie(it))
-        }
-
+    override fun showDataInRecyclerView(
+        it: Result
+    ) {
+        adapter.add(Movie(it))
     }
 }

@@ -32,7 +32,6 @@ class TopRatedMoviesFragment : Fragment(), TopRatedMoviesContract.view {
 
     private lateinit var topRatedPresenter: TopRatedMoviesPresenter
     val adapter = GroupAdapter<ViewHolder>()
-    private val disposables = CompositeDisposable()
 
 
     override fun onCreateView(
