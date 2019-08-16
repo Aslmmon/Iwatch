@@ -27,6 +27,7 @@ class TopRatedMoviesPresenter : TopRatedMoviesContract.presenter, BasePresenter<
     override fun getTopRatedMovies() {
         compositeDisposable = CompositeDisposable()
         MovieObservable.subscribeOn(Schedulers.io()).concatMap { trailers -> Constants.getMovieTrailers(trailers)}
+            .doOnError { t -> print("doOnerror $t") }
             .concatMap { result ->
                 Constants.getDetails(result)
             }.concatMap{ reviewsResult -> Constants.getMovieReviews(reviewsResult) }.observeOn(AndroidSchedulers.mainThread())

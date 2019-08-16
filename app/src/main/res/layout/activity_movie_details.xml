@@ -6,23 +6,39 @@
     <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
                                                        android:layout_height="match_parent">
 
-        <ImageView android:layout_width="match_parent"
-                   android:layout_height="250dp"
-                   android:scaleType="fitXY"
-                   android:src="@drawable/ic_launcher_background"
-                   android:id="@+id/backPosterImage"
-                   app:layout_collapseMode="parallax"
-                   app:layout_constraintTop_toTopOf="parent"
+
+            <ImageView android:layout_width="match_parent"
+                       android:layout_height="250dp"
+                       android:scaleType="fitXY"
+                       android:src="@drawable/photo"
+                       android:id="@+id/backPosterImage"
+                       app:layout_constraintTop_toTopOf="parent"
+                       app:layout_constraintStart_toStartOf="parent"
+            />
+        <com.varunest.sparkbutton.SparkButton
+                android:id="@+id/spark_button"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                app:sparkbutton_activeImage="@drawable/heart_purple"
+                app:sparkbutton_inActiveImage="@drawable/heart"
+                app:sparkbutton_iconSize="40dp"
+                app:sparkbutton_primaryColor="@color/colorPrimary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/backPosterImage"/>
+
+        <ImageView android:layout_width="150dp"
+                   android:layout_height="200dp"
+                   android:id="@+id/imagePoster"
+                   android:src="@drawable/world"
+                   app:layout_constraintTop_toBottomOf="@+id/imageGuidline"
                    app:layout_constraintStart_toStartOf="parent"
-        />
-
-
+                   app:layout_constraintBottom_toBottomOf="@+id/backPosterImage"/>
         <TextView
                 android:text="Film title"
                 android:fontFamily="@font/aladin"
                 android:id="@+id/movieTitle"
                 android:maxWidth="200dp"
-                app:layout_constraintTop_toBottomOf="@+id/backPosterImage"
+                app:layout_constraintTop_toBottomOf="@+id/imagePoster"
                 app:layout_constraintStart_toStartOf="parent"
                 style="@style/filmStyle"/>
         <TextView
@@ -30,7 +46,7 @@
                 android:text="2016"
                 android:id="@+id/filmDate"
                 app:layout_constraintStart_toEndOf="@+id/movieTitle"
-                app:layout_constraintTop_toBottomOf="@+id/backPosterImage"/>
+                app:layout_constraintTop_toBottomOf="@+id/imagePoster"/>
 
         <TextView android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
@@ -118,5 +134,10 @@
         >
 
         </androidx.recyclerview.widget.RecyclerView>
+        <androidx.constraintlayout.widget.Guideline android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:id="@+id/imageGuidline"
+                                                    app:layout_constraintGuide_percent="0.15"
+                                                    android:orientation="horizontal"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
