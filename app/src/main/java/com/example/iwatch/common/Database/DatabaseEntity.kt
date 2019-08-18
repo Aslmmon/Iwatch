@@ -13,7 +13,8 @@ import androidx.room.PrimaryKey
 data class MovieFavourites constructor(
     @PrimaryKey()
     val id: Int ,
-    val MovieName: String
+    val MovieName: String,
+    val imageMovie:String
 )
 
 

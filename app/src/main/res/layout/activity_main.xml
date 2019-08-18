@@ -7,28 +7,6 @@
         android:layout_height="match_parent"
         tools:context=".MainActivity">
 
-    <!--<com.google.android.material.tabs.TabLayout android:layout_width="match_parent"-->
-                                                <!--android:layout_height="?attr/actionBarSize"-->
-                                                <!--app:tabMode="scrollable"-->
-                                                <!--app:tabGravity="center"-->
-                                                <!--android:id="@+id/tabs"-->
-                                                <!--android:background="@color/colorPrimary"-->
-                                                <!--app:tabTextColor="@color/white"-->
-                                                <!--app:layout_constraintStart_toStartOf="parent"-->
-                                                <!--app:layout_constraintEnd_toEndOf="parent"-->
-                                                <!--app:layout_constraintTop_toTopOf="parent"/>-->
-
-    <!--<androidx.viewpager.widget.ViewPager android:layout_width="match_parent"-->
-                                         <!--android:layout_height="0dp"-->
-                                         <!--app:layout_constrainedHeight="true"-->
-                                         <!--android:id="@+id/viewPager"-->
-                                         <!--android:scrollIndicators="start"-->
-                                         <!--app:layout_constraintTop_toBottomOf="@+id/tabs"-->
-                                         <!--app:layout_constraintStart_toStartOf="parent"-->
-                                         <!--app:layout_constraintEnd_toEndOf="parent"-->
-                                       <!--&gt;-->
-
-    <!--</androidx.viewpager.widget.ViewPager>-->
     <fragment android:layout_width="0dp"
               android:layout_height="0dp"
               android:name="androidx.navigation.fragment.NavHostFragment"
@@ -40,5 +18,17 @@
               app:defaultNavHost="true"
               android:id="@+id/nav_host_fragment"
               app:navGraph="@navigation/my_navigation"
-              app:layout_constraintBottom_toBottomOf="parent"/>
+              app:layout_constraintBottom_toTopOf="@+id/bottom_nav"/>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView android:layout_width="match_parent"
+                                                                       android:layout_height="wrap_content"
+                                                                       android:id="@+id/bottom_nav"
+                                                                       app:menu="@menu/navigation_menu"
+                                                                       app:layout_constraintBottom_toBottomOf="parent"
+                                                                       app:layout_constraintEnd_toEndOf="parent"
+                                                                       app:layout_constraintStart_toStartOf="parent"
+    >
+
+
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
 </androidx.constraintlayout.widget.ConstraintLayout>

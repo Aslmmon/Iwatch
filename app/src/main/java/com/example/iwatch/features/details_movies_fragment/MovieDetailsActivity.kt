@@ -33,8 +33,6 @@ import io.reactivex.observers.DisposableMaybeObserver
 import kotlin.reflect.jvm.internal.impl.load.kotlin.header.KotlinClassHeader.Kind.getById
 
 
-
-
 class MovieDetailsActivity : AppCompatActivity() {
 
     private val builder = StringBuilder()
@@ -46,7 +44,7 @@ class MovieDetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movie_details)
         supportActionBar?.title = "Details"
-         val database = getDatabase(application)
+        val database = getDatabase(application)
 
         adapter.clear()
         adapter2.clear()
@@ -55,6 +53,11 @@ class MovieDetailsActivity : AppCompatActivity() {
         trailersImagesRecycler.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         Picasso.get().load("https://image.tmdb.org/t/p/w500" + response.backdrop_path).into(backPosterImage)
         Picasso.get().load("https://image.tmdb.org/t/p/w500" + response.poster_path).into(imagePoster)
+        val selectedMovieFavourites =   MovieFavourites(
+            MovieName = response?.title!!,
+            id = response?.id,
+            imageMovie = response?.backdrop_path
+        )
 
         movieTitle.text = response.title
         val dateCut = response.release_date?.split("-")
@@ -95,22 +98,25 @@ class MovieDetailsActivity : AppCompatActivity() {
             override fun onEvent(button: ImageView?, buttonState: Boolean) {
                 if (buttonState) {
 
-                    database.moviesDao.insertMovie(MovieFavourites(MovieName = response?.title!!,id = response?.id))
+                    database.moviesDao.insertMovie(
+                        selectedMovieFavourites
+                    )
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe {
-                            Toast.makeText(this@MovieDetailsActivity,"Saved To Database",Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this@MovieDetailsActivity, "Saved To Database", Toast.LENGTH_SHORT).show()
                         }
                     spark_button.isSaveEnabled
 
                 } else {
                     Log.i("Details", "off")
 
-                    database.moviesDao.deleteMovie(MovieFavourites(MovieName = response?.title!!,id = response?.id))
+                    database.moviesDao.deleteMovie(selectedMovieFavourites)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe {
-                            Toast.makeText(this@MovieDetailsActivity,"deleted From Database",Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this@MovieDetailsActivity, "deleted From Database", Toast.LENGTH_SHORT)
+                                .show()
                         }
 
                 }

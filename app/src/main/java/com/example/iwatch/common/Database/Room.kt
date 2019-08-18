@@ -29,7 +29,7 @@ class DatabaseRoom {
 
 }
 
-@Database(entities = [MovieFavourites::class], version = 1)
+@Database(entities = [MovieFavourites::class], version = 2)
 abstract class sourceMoviesDatabase : RoomDatabase() {
     abstract val moviesDao: DatabaseRoom.MoviesDao
 

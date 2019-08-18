@@ -8,9 +8,11 @@ import com.example.iwatch.common.Model.movie_vedio_response.MovieVediosResponse
 import com.example.iwatch.common.Model.movie_vedio_response.MovieVediosResult
 import com.example.iwatch.common.Model.reviews_response_movies.ResultReviews
 import com.example.iwatch.common.Model.top_rated_movies_model.Result
+import com.robusta.tripsappteam1.common.Database.MovieFavourites
 import com.squareup.picasso.Picasso
 import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
+import kotlinx.android.synthetic.main.favourite_list_item.view.*
 import kotlinx.android.synthetic.main.image_trailers.view.*
 import kotlinx.android.synthetic.main.movie_layout.view.*
 import kotlinx.android.synthetic.main.review_movie.view.*
@@ -51,4 +53,18 @@ class TrailerImages(val movieVediosResponse: MovieVediosResult):Item<ViewHolder>
         Picasso.get().load("https://img.youtube.com/vi/" + movieVediosResponse.key+"/sddefault.jpg")
             .into(viewHolder.itemView.imageTrailer)
     }
+}
+
+class FavouriteMovies(val favMovie:MovieFavourites):Item<ViewHolder>(){
+    override fun getLayout(): Int {
+        return R.layout.favourite_list_item
+    }
+
+    override fun bind(viewHolder: ViewHolder, position: Int) {
+        viewHolder.itemView.favouriteText.text = favMovie.MovieName
+        Picasso.get().load("https://image.tmdb.org/t/p/w500" + favMovie.imageMovie)
+            .into(viewHolder.itemView.imageFavourite)
+
+    }
+
 }

@@ -2,9 +2,9 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools" android:id="@+id/my_navigation"
-            app:startDestination="@id/mainFragment">
+            app:startDestination="@id/destination_home">
 
-    <fragment android:id="@+id/mainFragment" android:name="com.example.iwatch.MainFragment"
+    <fragment android:id="@+id/destination_home" android:name="com.example.iwatch.MainFragment"
               android:label="fragment_main" tools:layout="@layout/fragment_main"/>
     <fragment android:id="@+id/topRatedMoviesFragment"
               android:name="com.example.iwatch.features.top_rated_fragment.TopRatedMoviesFragment"
@@ -12,4 +12,7 @@
     <fragment android:id="@+id/upcomingMoviesFragment"
               android:name="com.example.iwatch.features.upcoming_fragment.UpcomingMoviesFragment"
               android:label="fragment_upcoming_movies" tools:layout="@layout/fragment_upcoming_movies"/>
+    <fragment android:id="@+id/destination_favourites"
+              android:name="com.example.iwatch.features.favourites.FavouritesFragment"
+              android:label="fragment_favourites" tools:layout="@layout/fragment_favourites"/>
 </navigation>

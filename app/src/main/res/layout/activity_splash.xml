@@ -5,6 +5,27 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/gradient"
         tools:context=".features.splash.SplashActivity">
+
+
+    <ImageView android:layout_width="120dp"
+               android:layout_height="120dp"
+               android:src="@drawable/movie"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toTopOf="parent"
+               app:layout_constraintBottom_toBottomOf="parent"
+               android:id="@+id/logoImageView"/>
+
+    <TextView android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="IWatch"
+              android:fontFamily="@font/aladin"
+              android:textColor="@color/white"
+              android:textSize="32sp"
+              app:layout_constraintEnd_toEndOf="@+id/logoImageView"
+              app:layout_constraintStart_toStartOf="@+id/logoImageView"
+              app:layout_constraintTop_toBottomOf="@+id/logoImageView"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
