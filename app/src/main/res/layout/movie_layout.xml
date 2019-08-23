@@ -6,7 +6,7 @@
 
     <ImageView android:layout_width="0dp"
                app:layout_constrainedWidth="true"
-               android:src="@drawable/ic_launcher_foreground"
+               android:src="@drawable/world"
                android:layout_height="wrap_content"
                android:id="@+id/posterImage"
                android:layout_margin="2dp"

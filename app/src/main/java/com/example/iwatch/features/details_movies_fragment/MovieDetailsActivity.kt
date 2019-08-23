@@ -30,7 +30,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.movie_layout.*
 import io.reactivex.observers.DisposableMaybeObserver
-import kotlin.reflect.jvm.internal.impl.load.kotlin.header.KotlinClassHeader.Kind.getById
 
 
 class MovieDetailsActivity : AppCompatActivity() {

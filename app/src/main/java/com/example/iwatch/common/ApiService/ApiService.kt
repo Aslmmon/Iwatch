@@ -5,9 +5,9 @@ import com.example.iwatch.common.Model.details_response.DetailsResponse
 import com.example.iwatch.common.Model.movie_vedio_response.MovieVediosResponse
 import com.example.iwatch.common.Model.reviews_response_movies.ReviewsResponse
 import com.example.iwatch.common.Model.top_rated_movies_model.MoviesResponse
-import com.squareup.moshi.Moshi
-import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import com.example.iwatch.common.TLSSocketFactory
 import io.reactivex.Observable
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -18,11 +18,16 @@ import retrofit2.http.Query
 
 private const val BASE_URL = "https://api.themoviedb.org"
 
+
+    var okk = OkHttpClient.Builder().sslSocketFactory(TLSSocketFactory()).build()
+
+
 /**
  * Here Creating Singleton Retrofit instance to be used with each Api
  * */
 private val retrofit = Retrofit.Builder()
     .addConverterFactory(GsonConverterFactory.create())
+    .client(okk)
     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
     .baseUrl(BASE_URL)
     .build()
@@ -57,12 +62,11 @@ interface ApiService {
     fun getPopularMovies(@Query("page") id: Int): Observable<MoviesResponse>
 
 
-
     /**
      * Here Getting Details of Movie
      * */
     @GET("/3/movie/{movie_id}?api_key=658680e409a5e9e11988f3e49361edae")
-    fun getDetailsofMovie(@Path("movie_id") movieId:String) : Observable<DetailsResponse>
+    fun getDetailsofMovie(@Path("movie_id") movieId: String): Observable<DetailsResponse>
 
 
     /**
@@ -70,15 +74,14 @@ interface ApiService {
      * */
 
     @GET("/3/movie/{movie_id}/reviews?api_key=658680e409a5e9e11988f3e49361edae&language")
-    fun getReviewsOfMovie(@Path("movie_id") movieId:String) : Observable<ReviewsResponse>
-
+    fun getReviewsOfMovie(@Path("movie_id") movieId: String): Observable<ReviewsResponse>
 
 
     /**
      * Here Getting Trailers and Vedios of Movies
      * */
     @GET("/3/movie/{movie_id}/videos?api_key=658680e409a5e9e11988f3e49361edae")
-    fun getTrailersOfMovie(@Path("movie_id") movieId:String) : Observable<MovieVediosResponse>
+    fun getTrailersOfMovie(@Path("movie_id") movieId: String): Observable<MovieVediosResponse>
 
 }
 

@@ -24,6 +24,9 @@ class UpcomingMoviesPresenter : UpcomingMoviesContract.presenter, BasePresenter<
                 Observable.fromIterable(movies.results).subscribeOn(Schedulers.io())
             }
 
+
+
+
     override fun getUpcomingMovies() {
         compositeDisposable = CompositeDisposable()
         UpcomingMovieObservable.subscribeOn(Schedulers.io()).concatMap { trailers -> Constants.getMovieTrailers(trailers) }
@@ -52,4 +55,6 @@ class UpcomingMoviesPresenter : UpcomingMoviesContract.presenter, BasePresenter<
     }
 
 
+
 }
+

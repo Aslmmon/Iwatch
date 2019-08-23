@@ -9,7 +9,6 @@ android {
     compileSdkVersion 28
     buildToolsVersion "29.0.1"
     defaultConfig {
-        multiDexEnabled true
 
         applicationId "com.example.iwatch"
         minSdkVersion 19
@@ -55,9 +54,6 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
 
-    // Moshi
-    implementation "com.squareup.moshi:moshi-kotlin:1.8.0"
-    kapt "com.squareup.moshi:moshi-kotlin-codegen:1.8.0"
 
 
     // Retrofit for networking
@@ -68,7 +64,6 @@ dependencies {
     // Room database
     implementation "androidx.room:room-runtime:2.1.0-beta01"
     annotationProcessor 'androidx.room:room-compiler:2.0.0'
-    kapt 'androidx.room:room-compiler:2.0.0'
     kapt "androidx.room:room-compiler:2.1.0-beta01"
 
 
@@ -86,17 +81,12 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
 
     // cut shapes
-    implementation 'com.github.florent37:shapeofview:1.3.2'
     implementation 'android.arch.persistence.room:rxjava2:1.1.1-alpha1'
 
     //circular Image
     implementation 'de.hdodenhof:circleimageview:3.0.0'
 
-
-
     // spark Button
     implementation 'com.github.varunest:sparkbutton:1.0.6'
-
-
     debugImplementation 'com.amitshekhar.android:debug-db:1.0.6'
 }
